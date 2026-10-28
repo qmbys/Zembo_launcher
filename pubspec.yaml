@@ -1,0 +1,35 @@
+name: zembo_launcher
+description: Minecraft Launcher in Material You design
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.2.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  archive: ^3.6.1
+  google_fonts: ^6.1.0
+  http: ^1.1.0
+  package_info_plus: ^8.0.0
+  flutter_secure_storage: ^9.2.4
+  shared_preferences: ^2.2.0
+  file_picker: ^8.0.0
+  path: ^1.8.0
+  crypto: ^3.0.7
+  desktop_drop: ^0.5.0
+  window_manager: ^0.4.3
+  tray_manager: ^0.2.3
+  dart_discord_presence: ^1.0.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^3.0.0
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/images/
+    - assets/agent/zembo-guard.jar

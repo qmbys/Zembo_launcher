@@ -1,0 +1,9 @@
+Zembo Launcher — Java runtime compatibility fix
+
+Minecraft versions declare their minimum Java major version in version.json (javaVersion.majorVersion).
+Before launch, Zembo Launcher checks the configured Java executable. If it is too old, on Windows it downloads a matching Adoptium JRE into:
+  <minecraft shared folder>/runtimes/java-<major>/
+
+The runtime is checked before being used. Existing Java settings are left unchanged; only the runtime used for an incompatible game version is switched.
+
+First launch of a version requiring a newer Java needs an internet connection. The download is hosted by Eclipse Adoptium.

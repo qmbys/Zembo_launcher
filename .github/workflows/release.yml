@@ -1,0 +1,44 @@
+name: Release
+
+# Релиз собирается при пуше тега вида v1.0.1.
+# Версия тега должна совпадать с version в pubspec.yaml (иначе лаунчер будет считать, что обновление всё ещё доступно).
+on:
+  push:
+    tags:
+      - 'v*'
+
+permissions:
+  contents: write
+
+jobs:
+  windows:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check version matches tag
+        shell: pwsh
+        run: |
+          $v = (Select-String -Path pubspec.yaml -Pattern '^version:\s*([0-9]+(\.[0-9]+)*)').Matches[0].Groups[1].Value
+          if ("v$v" -ne "${{ github.ref_name }}") { throw "pubspec.yaml version v$v does not match tag ${{ github.ref_name }}" }
+
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          cache: true
+
+      - run: flutter pub get
+      - run: flutter build windows --release
+
+      - name: Package
+        shell: pwsh
+        run: |
+          $name = "Zembo_launcher-windows-${{ github.ref_name }}.zip"
+          Compress-Archive -Path build/windows/x64/runner/Release/* -DestinationPath $name
+          "ASSET=$name" | Out-File -FilePath $env:GITHUB_ENV -Append -Encoding utf8
+
+      - name: Publish release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: ${{ env.ASSET }}
+          generate_release_notes: true

@@ -1,0 +1,17 @@
+Zembo Launcher — settings and mod-store UI update
+
+Updated files:
+- lib/widgets/profile_settings_dialog.dart: restyled the actual build-settings screen used by launcher_screen.dart; added compact responsive settings cards and redesigned tabs/footer; Modrinth catalog loads popular projects automatically, and search is optional with live filtering.
+- lib/screens/profile_settings_screen.dart: restyled standalone settings screen to match the launcher theme.
+- lib/screens/mod_store_screen.dart: compact responsive cards, automatic popular catalog, live search, and matching dark-green theme.
+- lib/services/modrinth_service.dart: encoded Modrinth query parameters safely and sorts the default empty-query results by downloads.
+- lib/widgets/zembo_title_bar.dart: keeps the latest custom toolbar and explicitly disables text decoration to avoid the yellow underline issue.
+
+Important:
+The existing in-build settings store retains its actual installation flow for selected projects. The standalone ModStoreScreen's detail dialog is only a browser preview and does not install projects; the launcher's active build-settings store is the one wired to the existing installer.
+
+Run from the project folder:
+  flutter pub get
+  flutter run -d windows
+
+This archive was edited from the latest v8 toolbar-fixed source. Flutter build could not be executed in this environment, so verify locally and share any compiler error if one appears.

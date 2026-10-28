@@ -15,11 +15,6 @@ flutter run -d windows
 ```
 Защитный агент (`tools/zembo-guard`) пересобирается скриптом `build.bat` / `build.sh` (нужен JDK 17+), результат кладётся в `assets/agent/zembo-guard.jar`.
 
-## Выпуск новой версии
-1. Поменяй `version:` в `pubspec.yaml`, например на `1.0.1+2`.
-2. Закоммить и запушь изменения.
-3. Создай и запушь тег: `git tag v1.0.1 && git push origin v1.0.1`.
-4. GitHub Actions соберёт Windows-версию и опубликует релиз с zip-архивом. Лаунчеры у пользователей увидят обновление.
 
 ## Лицензия
 MIT
